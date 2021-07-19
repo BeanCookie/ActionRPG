@@ -38,7 +38,7 @@ func process_move(delta):
 		# 限定最大速度
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		animationState.travel("Idel")
+		animationState.travel("Idle")
 		# 设置摩擦力
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			
