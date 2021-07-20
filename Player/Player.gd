@@ -19,9 +19,11 @@ onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = $AnimationTree.get("parameters/playback")
 onready var state = MOVE
+onready var swordHitBox = $HitboxPivot/SwordHitBox
 
 func _ready():
 	animationTree.active = true
+	swordHitBox.knockback_vertor = Vector2.LEFT
 
 func process_move(delta):
 	var input_vector = Vector2.ZERO
@@ -35,6 +37,7 @@ func process_move(delta):
 		animationTree.set("parameters/Run/blend_position", input_vector)
 		animationTree.set("parameters/Attack/blend_position", input_vector)
 		animationState.travel("Run")
+		swordHitBox.knockback_vertor = input_vector
 		# 限定最大速度
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
